@@ -30,3 +30,5 @@
 
 #include "include/Window.h"
 #include "include/Renderer.h"
+
+#include "include/Texture.h"
