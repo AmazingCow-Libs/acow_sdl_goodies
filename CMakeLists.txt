@@ -22,12 +22,13 @@ cmake_minimum_required(VERSION 3.5)
 
 ##------------------------------------------------------------------------------
 ## Project Settings.
-project(acow_sdl_goodies)
+set(PROJECT_NAME acow_sdl_goodies)
+project(${PROJECT_NAME})
 
 
 ##------------------------------------------------------------------------------
 ## Sources.
-add_library(acow_sdl_goodies
+add_library(${PROJECT_NAME}
     acow/src/SDL.cpp
     acow/src/IMG.cpp
     acow/src/TTF.cpp
@@ -40,12 +41,42 @@ add_library(acow_sdl_goodies
 
 
 ##------------------------------------------------------------------------------
+## Modules
+##   Find packages scripts was taken from:
+##     https://github.com/tcbrindle/sdl2-cmake-scripts
+set(CMAKE_MODULE_PATH ${CMAKE_MODULE_PATH} "${CMAKE_CURRENT_SOURCE_DIR}/cmake_find")
+
+
+##------------------------------------------------------------------------------
+## SDL
+find_package(SDL2       REQUIRED)
+find_package(SDL2_image REQUIRED)
+find_package(SDL2_ttf   REQUIRED)
+
+include_directories(
+    ${SDL2_INCLUDE_DIR}
+    ${SDL2_IMAGE_INCLUDE_DIR}
+    ${SDL2_TTF_INCLUDE_DIR}
+)
+
+target_include_directories(${PROJECT_NAME} PUBLIC ${SDL2_INCLUDE_DIR}        )
+target_include_directories(${PROJECT_NAME} PUBLIC ${SDL2_IMAGE_INCLUDE_DIRS} )
+target_include_directories(${PROJECT_NAME} PUBLIC ${SDL2_TTF_INCLUDE_DIRS}   )
+
+
+
+##------------------------------------------------------------------------------
 ## Include directories.
-target_include_directories(acow_sdl_goodies PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+target_include_directories(${PROJECT_NAME} PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
 
 
 ##------------------------------------------------------------------------------
 ## Dependencies.
-target_link_libraries(acow_sdl_goodies LINK_PUBLIC acow_cpp_goodies)
-target_link_libraries(acow_sdl_goodies LINK_PUBLIC CoreAssert      )
-target_link_libraries(acow_sdl_goodies LINK_PUBLIC CoreString      )
+## SDL
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARY}        )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_IMAGE_LIBRARIES})
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_TTF_LIBRARIES}  )
+## AmazingCow Libs
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC acow_cpp_goodies)
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreAssert      )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreString      )
