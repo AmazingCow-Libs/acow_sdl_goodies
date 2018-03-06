@@ -33,12 +33,6 @@ using namespace sdl;
 //----------------------------------------------------------------------------//
 // Functions                                                                  //
 //----------------------------------------------------------------------------//
-void Renderer::SafeDestroy(SDL_Renderer *pRenderer) noexcept
-{
-    if(pRenderer)
-        SDL_DestroyRenderer(pRenderer);
-}
-
 Renderer::SPtr Renderer::CreateShared(
     SDL_Window *pWindow,
     int         index,

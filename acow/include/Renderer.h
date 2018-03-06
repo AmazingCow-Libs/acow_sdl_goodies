@@ -24,6 +24,7 @@
 #include "acow/cpp_goodies.h"
 // acow_sdl_goodies
 #include "SDLGoodies_Utils.h"
+#include "Destroy.h"
 
 
 NS_ACOW_SDL_GOODIES_BEGIN
@@ -33,6 +34,10 @@ namespace Renderer {
     // Functions                                                              //
     //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
+    inline void SafeDestroy(SDL_Renderer *pRenderer) noexcept
+    {
+        ACOW_SDL_SAFE_DESTROY_RENDERER(pRenderer);
+    }
 
 
     //------------------------------------------------------------------------//

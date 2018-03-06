@@ -24,16 +24,20 @@
 #include "acow/cpp_goodies.h"
 // acow_sdl_goodies
 #include "SDLGoodies_Utils.h"
-
+#include "Destroy.h"
 
 NS_ACOW_SDL_GOODIES_BEGIN
 
-namespace Window {
+namespace Window
+{
     //------------------------------------------------------------------------//
     // Functions                                                              //
     //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
-    void SafeDestroy(SDL_Window *pWindow) noexcept;
+    inline void SafeDestroy(SDL_Window *pWindow) noexcept
+    {
+        ACOW_SDL_SAFE_DESTROY_WINDOW(pWindow);
+    }
 
 
     //------------------------------------------------------------------------//

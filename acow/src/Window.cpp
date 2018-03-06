@@ -33,12 +33,6 @@ using namespace sdl;
 //----------------------------------------------------------------------------//
 // Functions                                                                  //
 //----------------------------------------------------------------------------//
-void Window::SafeDestroy(SDL_Window *pWindow) noexcept
-{
-    if(pWindow)
-        SDL_DestroyWindow(pWindow);
-}
-
 Window::SPtr Window::CreateShared(
     const std::string &title,
     int x, int y,
