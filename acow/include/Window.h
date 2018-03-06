@@ -31,7 +31,7 @@ NS_ACOW_SDL_GOODIES_BEGIN
 namespace Window {
     //------------------------------------------------------------------------//
     // Functions                                                              //
-    //   We need this here because the typedefs need :x
+    //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
     void SafeDestroy(SDL_Window *pWindow) noexcept;
 

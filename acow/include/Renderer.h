@@ -31,9 +31,8 @@ NS_ACOW_SDL_GOODIES_BEGIN
 namespace Renderer {
     //------------------------------------------------------------------------//
     // Functions                                                              //
-    //   We need this here because the typedefs need :x
+    //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
-    void SafeDestroy(SDL_Renderer *pRenderer) noexcept;
 
 
     //------------------------------------------------------------------------//
