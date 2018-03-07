@@ -20,8 +20,9 @@
 
 #pragma once
 
-//------------------------------------------------------------------------------
-// Export Headers
+//----------------------------------------------------------------------------//
+// Export Headers                                                             //
+//----------------------------------------------------------------------------//
 #include "include/SDL.h"
 #include "include/IMG.h"
 #include "include/TTF.h"
@@ -31,4 +32,5 @@
 #include "include/Window.h"
 #include "include/Renderer.h"
 
+#include "include/Surface.h"
 #include "include/Texture.h"
