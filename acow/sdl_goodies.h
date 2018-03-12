@@ -32,5 +32,6 @@
 #include "include/Window.h"
 #include "include/Renderer.h"
 
+#include "include/Color.h"
 #include "include/Surface.h"
 #include "include/Texture.h"
