@@ -15,10 +15,31 @@ class Color
     // Colors                                                                 //
     //------------------------------------------------------------------------//
 public:
-    static inline const Color& CornflowerBlue() noexcept {
-        static auto s = Color(100, 149, 237);
-        return s;
-    }
+    #define DEFINE_COLOR(_name_, _r_, _g_, _b_, _a_) \
+        ACOW_CONSTEXPR_STRICT inline static Color    \
+        _name_() noexcept                            \
+        {                                            \
+            return Color(_r_, _g_, _b_, _a_);        \
+        }
+
+    //--------------------------------------------------------------------------
+    // BW.
+    DEFINE_COLOR(White, 255, 255, 255, 255)
+    DEFINE_COLOR(Black,   0,   0,   0, 255)
+
+    //--------------------------------------------------------------------------
+    // Primary Colors.
+    DEFINE_COLOR(Red,  255,   0,   0, 255)
+    DEFINE_COLOR(Green,  0, 255,   0, 255)
+    DEFINE_COLOR(Blue,   0,   0, 255, 255)
+
+    //------------------------------------------------------------------------------
+    // Secondary Colors.
+    DEFINE_COLOR(Cyan,      0, 255, 255, 255);
+    DEFINE_COLOR(Magenta, 255,   0, 255, 255);
+    DEFINE_COLOR(Yellow,  255, 255,   0, 255);
+
+    #undef DEFINE_COLOR
 
 
     //------------------------------------------------------------------------//
