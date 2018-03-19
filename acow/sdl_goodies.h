@@ -35,3 +35,5 @@
 #include "include/Color.h"
 #include "include/Surface.h"
 #include "include/Texture.h"
+
+#include "include/Timer.h"
