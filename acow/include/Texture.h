@@ -112,6 +112,7 @@ namespace Texture
         COREASSERT_ASSERT(
             p_texture,
             "Failed to load texture - Path: (%s) - %s",
+            path.c_str(),
             Error::Last()
         );
 
