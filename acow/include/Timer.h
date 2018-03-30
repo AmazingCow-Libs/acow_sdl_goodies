@@ -57,7 +57,7 @@ public:
     inline void
     Reset() noexcept
     {
-         m_startTime = SDL_GetPerformanceCounter();
+        m_startTime = SDL_GetPerformanceCounter();
         m_deltaTime = 0;
         m_totalTime = 0;
 
