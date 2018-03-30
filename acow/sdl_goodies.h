@@ -37,3 +37,6 @@
 #include "include/Texture.h"
 
 #include "include/Timer.h"
+
+#include "include/Input/SimpleInput.h"
+#include "include/Input/SimpleInput_Keycodes.h"

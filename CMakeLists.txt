@@ -28,6 +28,8 @@ project(${PROJECT_NAME})
 
 ##------------------------------------------------------------------------------
 ## Sources.
+include_directories(acow)
+
 add_library(${PROJECT_NAME}
     acow/src/SDL.cpp
     acow/src/IMG.cpp
@@ -37,6 +39,8 @@ add_library(${PROJECT_NAME}
 
     acow/src/Window.cpp
     acow/src/Renderer.cpp
+
+    acow/src/Input/SimpleInput.cpp
 )
 
 
