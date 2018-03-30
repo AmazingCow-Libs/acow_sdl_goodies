@@ -57,7 +57,6 @@ find_package(SDL2       REQUIRED)
 find_package(SDL2_image REQUIRED)
 find_package(SDL2_ttf   REQUIRED)
 
-
 include_directories(
     ${SDL2_INCLUDE_DIR}
     ${SDL2_IMAGE_INCLUDE_DIR}
@@ -81,6 +80,8 @@ target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_LIBRARY}        )
 target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_IMAGE_LIBRARIES})
 target_link_libraries(${PROJECT_NAME} LINK_PUBLIC ${SDL2_TTF_LIBRARIES}  )
 ## AmazingCow Libs
-target_link_libraries(${PROJECT_NAME} LINK_PUBLIC acow_cpp_goodies)
-target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreAssert      )
-target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreString      )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC acow_c_goodies   )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC acow_cpp_goodies )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC acow_math_goodies)
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreAssert       )
+target_link_libraries(${PROJECT_NAME} LINK_PUBLIC CoreString       )
