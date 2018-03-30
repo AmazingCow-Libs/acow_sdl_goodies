@@ -27,8 +27,6 @@
 using namespace acow;
 using namespace sdl;
 
-std::string gErrorMsg;
-
 
 //----------------------------------------------------------------------------//
 // Functions                                                                  //
@@ -38,12 +36,14 @@ const char * const Error::Last() noexcept
     auto p_sdl_error = SDL_GetError();
 
     //--------------------------------------------------------------------------
-    // No error ocurred - Return the empty string that SDL returned itself.
+    // No error occurred - Return the empty string that SDL returned itself.
     if(strlen(p_sdl_error) == 0)
         return p_sdl_error;
 
     //--------------------------------------------------------------------------
-    // Error ocurred - Prepare the message.
-    gErrorMsg = CoreString::Format("SDLError: %s", p_sdl_error);
-    return gErrorMsg.c_str();
+    // Error occurred - Prepare the message.
+    acow_local_persist char error_buffer[2048] = {};
+    sprintf(error_buffer, "SDLError: %s", p_sdl_error);
+
+    return error_buffer;
 }
