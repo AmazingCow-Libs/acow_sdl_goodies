@@ -39,7 +39,8 @@ namespace Texture
     // Functions                                                              //
     //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
-    inline void SafeDestroy(SDL_Texture *pTexture) noexcept
+    inline void
+    SafeDestroy(SDL_Texture *pTexture) noexcept
     {
         ACOW_SDL_SAFE_DESTROY_TEXTURE(pTexture);
     }
@@ -53,16 +54,17 @@ namespace Texture
 
 
     //------------------------------------------------------------------------//
-    // Load / Create                                                          //
+    // Create                                                                 //
     //------------------------------------------------------------------------//
-    inline SDL_Texture* CreateRaw(
+    inline SDL_Texture*
+    CreateRaw(
         SDL_Renderer *pRenderer,
         Uint32        format,
         int           access,
         int           w,
         int           h) noexcept
     {
-        COREASSERT_ASSERT(pRenderer, "pRenderer can't be null");
+        COREASSERT_ASSERT_NOT_NULL(pRenderer);
         auto p_texture = SDL_CreateTexture(pRenderer, format, access, w, h);
 
         COREASSERT_ASSERT(
@@ -74,7 +76,8 @@ namespace Texture
         return p_texture;
     }
 
-    inline Texture::UPtr CreateUnique(
+    inline Texture::UPtr
+    CreateUnique(
         SDL_Renderer *pRenderer,
         Uint32        format,
         int           access,
@@ -87,7 +90,8 @@ namespace Texture
         );
     }
 
-    inline Texture::SPtr CreateShared(
+    inline Texture::SPtr
+    CreateShared(
         SDL_Renderer *pRenderer,
         Uint32        format,
         int           access,
@@ -102,11 +106,18 @@ namespace Texture
         );
     }
 
-    inline SDL_Texture* LoadFromFile(
+
+    //------------------------------------------------------------------------//
+    // Load                                                                   //
+    //------------------------------------------------------------------------//
+    inline SDL_Texture*
+    LoadRaw(
         const std::string &path,
         SDL_Renderer      *pRenderer) noexcept
     {
-        COREASSERT_ASSERT(pRenderer, "pRenderer can't be null");
+        ACOW_ASSERT_NOT_STR_EMPTY_OR_WHITESPACE(path.c_str());
+        COREASSERT_ASSERT_NOT_NULL(pRenderer);
+
         auto p_texture = IMG_LoadTexture(pRenderer, path.c_str());
 
         COREASSERT_ASSERT(
