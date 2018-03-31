@@ -36,6 +36,11 @@ using namespace sdl;
 void ttf::Init() noexcept
 {
     COREASSERT_ASSERT(
+        TTF_WasInit() == 0,
+        "SDL_ttf is already initialized."
+    );
+
+    COREASSERT_ASSERT(
         TTF_Init() == 0,
         "Failed to initialize SDL_ttf - %s",
         Error::Last()
