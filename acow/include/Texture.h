@@ -106,6 +106,43 @@ namespace Texture
         );
     }
 
+    //------------------------------------------------------------------------//
+    // From Surface                                                           //
+    //------------------------------------------------------------------------//
+    inline SDL_Texture*
+    FromSurfaceRaw(SDL_Surface *pSurface, SDL_Renderer *pRenderer) noexcept
+    {
+        ACOW_ASSERT_NOT_NULL(pSurface);
+        ACOW_ASSERT_NOT_NULL(pRenderer);
+
+        auto p_texture = SDL_CreateTextureFromSurface(pRenderer, pSurface);
+        COREASSERT_ASSERT(
+            p_texture,
+            "Can't create texture from surface - %s",
+            Error::Last()
+        );
+
+        return p_texture;
+    }
+
+    inline Texture::UPtr
+    FromSurfaceUnique(SDL_Surface *pSurface, SDL_Renderer *pRenderer) noexcept
+    {
+        return Texture::UPtr(
+            FromSurfaceRaw(pSurface, pRenderer),
+            Texture::SafeDestroy
+        );
+    }
+
+    inline Texture::SPtr
+    FromSurfaceShared(SDL_Surface *pSurface, SDL_Renderer *pRenderer) noexcept
+    {
+        return Texture::SPtr(
+            FromSurfaceRaw(pSurface, pRenderer),
+            Texture::SafeDestroy
+        );
+    }
+
 
     //------------------------------------------------------------------------//
     // Load                                                                   //
@@ -130,16 +167,37 @@ namespace Texture
         return p_texture;
     }
 
+    inline Texture::UPtr
+    LoadUnique(
+        const std::string &path,
+        SDL_Renderer      *pRenderer) noexcept
+    {
+        return Texture::UPtr(LoadRaw(path, pRenderer), Texture::SafeDestroy);
+    }
+
+    inline Texture::SPtr
+    LoadShared(
+        const std::string &path,
+        SDL_Renderer      *pRenderer) noexcept
+    {
+        return Texture::SPtr(
+            LoadRaw(path, pRenderer),
+            Texture::SafeDestroy
+        );
+    }
+
 
     //------------------------------------------------------------------------//
     // Query                                                                  //
     //------------------------------------------------------------------------//
-    inline acow::math::Size QuerySize(SDL_Texture *pTexture) noexcept
+    inline acow::math::Size
+    QuerySize(SDL_Texture *pTexture) noexcept
     {
-        COREASSERT_ASSERT(pTexture, "pTexture can't be null");
+        COREASSERT_ASSERT_NOT_NULL(pTexture);
 
         int w,h;
         SDL_QueryTexture(pTexture, nullptr, nullptr, &w, &h);
+
         return acow::math::Size(w, h);
     }
 
