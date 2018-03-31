@@ -23,9 +23,10 @@ public:
         }
 
     //--------------------------------------------------------------------------
-    // BW.
-    DEFINE_COLOR(White, 255, 255, 255, 255)
-    DEFINE_COLOR(Black,   0,   0,   0, 255)
+    // BW / Transparent.
+    DEFINE_COLOR(White,       255, 255, 255, 255)
+    DEFINE_COLOR(Black,         0,   0,   0, 255)
+    DEFINE_COLOR(Transparent,   0,   0,   0,   0)
 
     //--------------------------------------------------------------------------
     // Primary Colors.
