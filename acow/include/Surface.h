@@ -39,7 +39,8 @@ namespace Surface
     // Functions                                                              //
     //   We need this here because the typedefs need :x                       //
     //------------------------------------------------------------------------//
-    inline void SafeDestroy(SDL_Surface *pSurface) noexcept
+    inline void
+    SafeDestroy(SDL_Surface *pSurface) noexcept
     {
         ACOW_SDL_SAFE_DESTROY_SURFACE(pSurface);
     }
@@ -53,9 +54,10 @@ namespace Surface
 
 
     //------------------------------------------------------------------------//
-    // Load / Create                                                          //
+    // Create                                                                 //
     //------------------------------------------------------------------------//
-    inline SDL_Surface* CreateRaw(
+    inline SDL_Surface*
+    CreateRaw(
         void  *pPixels,
         int    width,
         int    height,
@@ -82,7 +84,8 @@ namespace Surface
         return p_surface;
     }
 
-    inline Surface::UPtr CreateUnique(
+    inline Surface::UPtr
+    CreateUnique(
         void  *pPixels,
         int    width,
         int    height,
@@ -96,7 +99,8 @@ namespace Surface
         );
     }
 
-    inline Surface::SPtr CreateShared(
+    inline Surface::SPtr
+    CreateShared(
         void  *pPixels,
         int    width,
         int    height,
@@ -115,7 +119,8 @@ namespace Surface
     //------------------------------------------------------------------------//
     // Save                                                                   //
     //------------------------------------------------------------------------//
-    inline void Save(const std::string &path, SDL_Surface *pSurface) noexcept
+    inline void
+    Save(const std::string &path, SDL_Surface *pSurface) noexcept
     {
         COREASSERT_ASSERT(pSurface,      "pSurface can't be null");
         COREASSERT_ASSERT(!path.empty(), "path can't be empty");
