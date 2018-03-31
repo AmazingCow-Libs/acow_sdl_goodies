@@ -24,6 +24,7 @@
 #include <string>
 // AmazingCow Libs
 #include "CoreAssert/CoreAssert.h"
+#include "acow/cpp_goodies.h"
 #include "acow/math_goodies.h"
 // acow_sdl_goodies
 #include "SDLGoodies_Utils.h"
@@ -115,6 +116,45 @@ namespace Surface
             }
         );
     }
+
+
+    //------------------------------------------------------------------------//
+    // Load                                                                   //
+    //------------------------------------------------------------------------//
+    inline SDL_Surface*
+    LoadRaw(const std::string &path) noexcept
+    {
+        ACOW_ASSERT_NOT_STR_EMPTY_OR_WHITESPACE(path.c_str());
+
+        auto p_surface = SDL_LoadBMP(path.c_str());
+
+        COREASSERT_ASSERT(
+            p_surface,
+            "Can't load surface: (%s) - %s",
+            path.c_str(),
+            Error::Last
+        );
+
+        return p_surface;
+    }
+
+    inline Surface::UPtr
+    LoadUnique(const std::string &path) noexcept
+    {
+        return Surface::UPtr(LoadRaw(path), Surface::SafeDestroy);
+    }
+
+    inline Surface::SPtr
+    LoadShared(const std::string &path) noexcept
+    {
+        return Surface::SPtr(
+            LoadRaw(path),
+            [](SDL_Surface *pSurface){
+                Surface::SafeDestroy(pSurface);
+            }
+        );
+    }
+
 
     //------------------------------------------------------------------------//
     // Save                                                                   //
